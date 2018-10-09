@@ -1,0 +1,49 @@
+[user]
+	name = Kristian Walle
+	email = ***
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = red
+[alias]
+	s = status
+	l = log --graph --pretty=format':%C(yellow)%h%C(green bold)%d%Creset %s %C(white) %an, %ar%Creset'
+	perfclean = gc --aggressive
+	ec = config --global -e
+	preb = pull --rebase
+	p = pull
+	sapp = stash apply
+	sdrp = stash drop
+	spop = stash pop
+	slist = stash list
+	sshow = stash show
+	guib = gui browser master
+	cacheclean = !git rm --cached -r . && git add .
+	uloco = reset HEAD~
+	urb = remote update origin --prune
+[core]
+	editor = subl -n -w
+[diff]
+	tool = diffmerge
+[difftool "diffmerge"]
+	cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
+[merge]
+	tool = diffmerge
+[mergetool "diffmerge"]
+	cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
+	trustExitCode = true
+[mergetool]
+	keepBackup = false
