@@ -26,7 +26,6 @@
 	perfclean = gc --aggressive
 	ec = config --global -e
 	up = !git preb --prune $@ && git submodule update --init --recursive
-	preb = pull --rebase
 	p = pull
 	sapp = stash apply
 	sdrp = stash drop
