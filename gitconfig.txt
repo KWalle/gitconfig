@@ -20,6 +20,8 @@
 	untracked = red
 [alias]
 	s = status
+	b = branch
+	br = branch -r
 	l = log --graph --pretty=format':%C(yellow)%h%C(green bold)%d%Creset %s %C(white) %an, %ar%Creset'
 	ls = log --oneline
 	subrec = submodule update --recursive
