@@ -36,20 +36,32 @@
 	spop = stash pop
 	slist = stash list
 	sshow = stash show
+        sappc =  "!f() { if [ $# -eq 0 ]; then git stash apply; else git stash apply 'stash@{$1}'; fi }; f" #TODO: does this work?
 	guib = gui browser master
 	cacheclean = !git rm --cached -r . && git add .
 	uloco = reset HEAD~
 	urb = remote update origin --prune
+        rhh = reset head --hard
 [core]
 	editor = subl -n -w
 [diff]
 	tool = diffmerge
+# tool = smerge
+[difftool]
+        prompt = false
 [difftool "diffmerge"]
 	cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
+#       cmd = \"C:\\Program Files\\SourceGear\\Common\\DiffMerge\\sgdm.exe\" \"$LOCAL\" \"$REMOTE\"
+[difftool "smerge"]
+        cmd = smerge "$BASE" "$LOCAL" "$REMOTE"
 [merge]
-	tool = diffmerge
+#	tool = diffmerge
+        tool = "Sublime Merge"
 [mergetool "diffmerge"]
 	cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
 	trustExitCode = true
+[mergetool "Sublime Merge"]
+        cmd = smerge mergetool \"$BASE\" \"$REMOTE\" \"$LOCAL\" -o \"$MERGED\"
+        trustExitCode = true
 [mergetool]
 	keepBackup = false
